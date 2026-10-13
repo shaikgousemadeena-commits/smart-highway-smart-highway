@@ -1,24 +1,30 @@
-
 package com.smarthighway.smart_highway;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = {
+    "http://localhost:5173"
+})
 public class HighwayController {
 
-    @GetMapping("/api/health")
+    @GetMapping("/health")
     public Map<String, String> health() {
         return Map.of(
             "project", "Smart Highway Travel Assistant",
-            "status", "Running"
+            "status", "UP"
         );
     }
 
-    @GetMapping("/api/facilities")
-    public List<Map<String, String>> facilities() {
+    @GetMapping("/facilities")
+    public List<Map<String, String>> getFacilities() {
         return List.of(
             Map.of("name", "Fuel Station", "type", "Fuel"),
             Map.of("name", "EV Charging Point", "type", "EV"),
